@@ -4,14 +4,14 @@
 #include <fcntl.h>
 #include <string.h>
 
-
 /**
  * create_file - the function
- * @filename: the nnem o fthe file to be created
+ * @filename: the name of the file to be created
  * @text_content: The text
- * Description: THis createas another file
+ * Description: A function that creates another file
  * Return: int
  */
+
 int create_file(const char *filename, char *text_content)
 {
 	int fd;
