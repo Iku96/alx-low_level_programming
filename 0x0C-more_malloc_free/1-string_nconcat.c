@@ -1,34 +1,43 @@
+#include "main.h"
 #include <stdlib.h>
-#include <string.h>
 
 /**
- * malloc_checked - function
- * @s1: first string
- * @s2: second string
- * @n: n spaces
- * Description: string concatenator
- * Return: pointer
+ * string_nconcat - Concatenates two strings
+ * @s1: The first string.
+ * @s2: The second string.
+ * @n: The maximum number of bytes of s2 to concatenate to s1.
+ *
+ * Return: If the function fails - NULL.
+ *         Otherwise - a pointer to the concatenated space in memory.
  */
-
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *allocated;
-	unsigned int length, x, y;
+	char *concat;
+	unsigned int len = n, index;
 
-	length = strlen(s1) + n + 1;
+	if (s1 == NULL)
+		s1 = "";
 
-	allocated = (char *) malloc(length);
+	if (s2 == NULL)
+		s2 = "";
 
-	for (x = 0; x < strlen(s1); x++)
-	{
-		allocated[x] = s1[x];
-	}
+	for (index = 0; s1[index]; index++)
+		len++;
 
-	for (y = 0; y < n; y++)
-	{
-		allocated[x + y] = s2[y];
-	}
-	allocated[x + y + 1] = '\0';
+	concat = malloc(sizeof(char) * (len + 1));
 
-	return (allocated);
+	if (concat == NULL)
+		return (NULL);
+
+	len = 0;
+
+	for (index = 0; s1[index]; index++)
+		concat[len++] = s1[index];
+
+	for (index = 0; s2[index] && index < n; index++)
+		concat[len++] = s2[index];
+
+	concat[len] = '\0';
+
+	return (concat);
 }
